@@ -1,23 +1,26 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div id="introduction" class="row">
+  <div class="small-12 large-12 columns">
+    <h3>Transparencia Financiamiento</h3>
+    <p>¿Qué es? es un mapa para visualizar manera geográfica el financiamiento
+      climático que ha sido invertido a nivel nacional y estatal en México.</p>
+  </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <div class="small-12 large-12 columns">
+    <div class="small-12 large-2 columns">
+      <select id="mexicoMapYear"></select>
+    </div>
+    <div class="small-12 large-3 columns">
+      <select id="mexicoMapFinancing"></select>
+    </div>
+    <div class="small-12 large-3 columns">
+      <select id="mexicoMapScope"></select>
+    </div>
+    <div class="small-12 large-4 columns">
+      <input id="mexicoMapSearch" type="text" placeholder="Buscar proyecto por nombre">
+    </div>
+  </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  <div class="small-12 large-12 columns">
+    <mexico-map></mexico-map>
+  </div>
 </div>
