@@ -8,10 +8,17 @@
  * Controller of the financiamientoClimaticoApp
  */
 angular.module('financiamientoClimaticoApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['settingsFactory', function (settingsFactory) {
+
+    console.log(settingsFactory);
+
+    this.years = settingsFactory.map.yearsOptions;
+    this.financing = settingsFactory.map.financingOptions;
+    this.focus = settingsFactory.map.focusOptions;
+
+    this.filters = {
+      year: null,
+      financing: null,
+      focus: null
+    }
+  }]);

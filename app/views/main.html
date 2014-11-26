@@ -1,19 +1,29 @@
+<div id="tooltip"></div>
 <div id="introduction" class="row">
   <div class="small-12 large-12 columns">
     <h3>Transparencia Financiamiento</h3>
     <p>¿Qué es? es un mapa para visualizar manera geográfica el financiamiento
       climático que ha sido invertido a nivel nacional y estatal en México.</p>
+    {{main.filters.year}}
+    {{main.filters.financing}}
+    {{main.filters.focus}}
   </div>
 
   <div class="small-12 large-12 columns">
     <div class="small-12 large-2 columns">
-      <select id="mexicoMapYear"></select>
+      <select id="mexicoMapYear" ng-model="main.filters.year" ng-options="year for year in main.years">
+        <option value="">a&ntilde;o</option>
+      </select>
     </div>
     <div class="small-12 large-3 columns">
-      <select id="mexicoMapFinancing"></select>
+      <select id="mexicoMapFinancing" ng-model="main.filters.financing" ng-options="financing for financing in main.financing">
+        <option value="">financiamiento</option>
+      </select>
     </div>
-    <div class="small-12 large-3 columns">
-      <select id="mexicoMapScope"></select>
+      <div class="small-12 large-3 columns">
+      <select id="mexicoMapFocus" ng-model="main.filters.focus" ng-options="focus for focus in main.focus">
+        <option value="">enfoque</option>
+      </select>
     </div>
     <div class="small-12 large-4 columns">
       <input id="mexicoMapSearch" type="text" placeholder="Buscar proyecto por nombre">
