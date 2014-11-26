@@ -8,13 +8,13 @@
  * Controller of the financiamientoClimaticoApp
  */
 angular.module('financiamientoClimaticoApp')
-  .controller('MainCtrl', ['settingsFactory', function (settingsFactory) {
+  .controller('MainCtrl', ['SettingsFactory', function (SettingsFactory) {
 
-    console.log(settingsFactory);
+    console.log(SettingsFactory);
 
-    this.years = settingsFactory.map.yearsOptions;
-    this.financing = settingsFactory.map.financingOptions;
-    this.focus = settingsFactory.map.focusOptions;
+    this.years = SettingsFactory.map.yearsOptions;
+    this.financing = SettingsFactory.map.financingOptions;
+    this.focus = SettingsFactory.map.focusOptions;
 
     this.filters = {
       year: null,

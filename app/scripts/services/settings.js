@@ -8,7 +8,7 @@
  * Factory in the financiamientoClimaticoApp.
  */
 angular.module('financiamientoClimaticoApp')
-  .factory('settingsFactory', function () {
+  .factory('SettingsFactory', [function () {
     var map = {
       yearsOptions: [2012, 2013, 2014],
       financingOptions: ['financing_option 1', 'financing_option 2', 'financing_option 3'],
@@ -18,4 +18,4 @@ angular.module('financiamientoClimaticoApp')
     return {
       map: map
     };
-  });
+  }]);
