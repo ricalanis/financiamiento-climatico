@@ -18,27 +18,26 @@ angular.module('financiamientoClimaticoApp')
     this.filters = {
       year: null,
       financing: null,
-      focus: null
+      focus: null,
+      project: null
     };
 
     var applyFilterToRecord = function(filterValue, recordPropertyValue) {
       return  filterValue === null ||
               angular.equals(recordPropertyValue, filterValue);
-    }
+    };
+
+    var query = function(query, recordPropertyValue) {
+      return _.contains(query, recorPropertyValue);
+    };
 
     self.filterRecords = function(record) {
-      // console.log(
-      //   applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
-      //   applyFilterToRecord(self.filters.financing, record.financiamiento) &&
-      //   applyFilterToRecord(self.filters.focus, record.area_proyecto)
-      // );
       return applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
              applyFilterToRecord(self.filters.financing, record.financiamiento) &&
-             applyFilterToRecord(self.filters.focus, record.area_proyecto);
+             applyFilterToRecord(self.filters.focus, record.area_proyecto) &&
+             applyFilterToRecord(self.filters.project, record.nombre_proyecto);
     };
 
     // Fetch the data from the api
     Api.fetchDataset();
-
-
   }]);
