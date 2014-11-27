@@ -1,0 +1,23 @@
+// bower:scss
+// endbower
+
+@import 'cards';
+@import 'map';
+
+body {
+  background-color: #F5F5F5;
+}
+
+.title {
+  color: white;
+}
+
+#introduction {
+  margin-top: 50px;
+}
+
+.row {
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 20px;
+}

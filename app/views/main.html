@@ -1,0 +1,54 @@
+<div id="tooltip"></div>
+<div id="introduction" class="row">
+  <div class="small-12 large-12 columns">
+    <h3>Transparencia Financiamiento</h3>
+    <p>¿Qué es? es un mapa para visualizar manera geográfica el financiamiento
+      climático que ha sido invertido a nivel nacional y estatal en México.</p>
+    {{main.filters.year}}
+    {{main.filters.financing}}
+    {{main.filters.focus}}
+  </div>
+
+  <div class="small-12 large-12 columns">
+    <div class="small-12 large-2 columns">
+      <select id="mexicoMapYear" ng-model="main.filters.year" ng-options="year for year in main.options.years">
+        <option value="">-- A&ntilde;o --</option>
+      </select>
+    </div>
+    <div class="small-12 large-3 columns">
+      <select id="mexicoMapFinancing" ng-model="main.filters.financing" ng-options="financing for financing in main.options.financing">
+        <option value="">-- Financiamiento --</option>
+      </select>
+    </div>
+      <div class="small-12 large-3 columns">
+      <select id="mexicoMapFocus" ng-model="main.filters.focus" ng-options="focus for focus in main.options.focus">
+        <option value="">-- Enfoque --</option>
+      </select>
+    </div>
+    <div class="small-12 large-4 columns">
+      <input id="mexicoMapSearch" ng-model="main.filters.project" type="text" placeholder="Buscar proyecto por nombre">
+    </div>
+  </div>
+
+  <div class="small-12 large-12 columns">
+    <mexico-map></mexico-map>
+  </div>
+</div>
+
+<div class="row">
+  <!-- {{main.options}}
+  {{main.dataset}} -->
+    <!-- <span>{{ main.data.records }}</span> -->
+    <!-- <span>{{ main.options }}</span> -->
+  <p>
+    {{ results.length }}
+  </p>
+  <div class="data-unit" ng-repeat="record in ( results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
+    <p>
+      <span>{{ record.nombre_proyecto }} | </span>
+      <span style="color: blue;">{{ record.ano_aprobacion }} | </span>
+      <span style="color: red;">{{ record.financiamiento }} | </span>
+      <span style="color: green;">{{ record.area_proyecto }} </span>
+    </p>
+  </div>
+</div>
