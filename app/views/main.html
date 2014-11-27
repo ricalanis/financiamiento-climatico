@@ -43,7 +43,7 @@
   <p>
     {{ results.length }}
   </p>
-  <div class="data-unit" ng-repeat="record in ( results = (main.data.records | filter:main.filterRecords) )">
+  <div class="data-unit" ng-repeat="record in ( results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
     <p>
       <span>{{ record.nombre_proyecto }} | </span>
       <span style="color: blue;">{{ record.ano_aprobacion }} | </span>

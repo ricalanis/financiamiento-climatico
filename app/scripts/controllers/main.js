@@ -27,15 +27,10 @@ angular.module('financiamientoClimaticoApp')
               angular.equals(recordPropertyValue, filterValue);
     };
 
-    var query = function(query, recordPropertyValue) {
-      return _.contains(query, recorPropertyValue);
-    };
-
     self.filterRecords = function(record) {
       return applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
              applyFilterToRecord(self.filters.financing, record.financiamiento) &&
-             applyFilterToRecord(self.filters.focus, record.area_proyecto) &&
-             applyFilterToRecord(self.filters.project, record.nombre_proyecto);
+             applyFilterToRecord(self.filters.focus, record.area_proyecto);
     };
 
     // Fetch the data from the api
