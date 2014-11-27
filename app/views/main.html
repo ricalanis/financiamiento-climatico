@@ -11,18 +11,18 @@
 
   <div class="small-12 large-12 columns">
     <div class="small-12 large-2 columns">
-      <select id="mexicoMapYear" ng-model="main.filters.year" ng-options="year for year in main.years">
-        <option value="">a&ntilde;o</option>
+      <select id="mexicoMapYear" ng-model="main.filters.year" ng-options="year for year in main.options.years">
+        <option value="">-- A&ntilde;o --</option>
       </select>
     </div>
     <div class="small-12 large-3 columns">
-      <select id="mexicoMapFinancing" ng-model="main.filters.financing" ng-options="financing for financing in main.financing">
-        <option value="">financiamiento</option>
+      <select id="mexicoMapFinancing" ng-model="main.filters.financing" ng-options="financing for financing in main.options.financing">
+        <option value="">-- Financiamiento --</option>
       </select>
     </div>
       <div class="small-12 large-3 columns">
-      <select id="mexicoMapFocus" ng-model="main.filters.focus" ng-options="focus for focus in main.focus">
-        <option value="">enfoque</option>
+      <select id="mexicoMapFocus" ng-model="main.filters.focus" ng-options="focus for focus in main.options.focus">
+        <option value="">-- Enfoque --</option>
       </select>
     </div>
     <div class="small-12 large-4 columns">
@@ -32,5 +32,23 @@
 
   <div class="small-12 large-12 columns">
     <mexico-map></mexico-map>
+  </div>
+</div>
+
+<div class="row">
+  <!-- {{main.options}}
+  {{main.dataset}} -->
+    <!-- <span>{{ main.data.records }}</span> -->
+    <!-- <span>{{ main.options }}</span> -->
+  <p>
+    {{ results.length }}
+  </p>
+  <div class="data-unit" ng-repeat="record in ( results = (main.data.records | filter:main.filterRecords) )">
+    <p>
+      <span>{{ record.nombre_proyecto }} | </span>
+      <span style="color: blue;">{{ record.ano_aprobacion }} | </span>
+      <span style="color: red;">{{ record.financiamiento }} | </span>
+      <span style="color: green;">{{ record.area_proyecto }} </span>
+    </p>
   </div>
 </div>
