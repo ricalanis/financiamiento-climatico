@@ -35,12 +35,12 @@
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row"> -->
   <!-- {{main.options}}
   {{main.dataset}} -->
     <!-- <span>{{ main.data.records }}</span> -->
     <!-- <span>{{ main.options }}</span> -->
-  <p>
+  <!-- <p>
     {{ main.results.length }}
   </p>
   <div class="data-unit" ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
@@ -52,5 +52,17 @@
       <span style="color: orange;">{{ record.region }} | </span>
       <span style="color: green;">{{ record.area_proyecto }} </span>
     </p>
+  </div> -->
+  <div class="deck">
+    <div class="table__card">
+      <ul>
+        <li class="table--row" ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
+          <div class="row--title">{{ record.nombre_proyecto }}</div>
+          <div class="row--subtitle">{{ record.region }}</div>
+          <div class="row--footer text-right">${{ record.cantidad }}.00</div>
+        </li>
+      </ul>
+    </div>
+
   </div>
-</div>
+<!-- </div> -->
