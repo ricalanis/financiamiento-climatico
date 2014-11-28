@@ -7,15 +7,17 @@
  * # mexicoMap
  */
 angular.module('financiamientoClimaticoApp')
-  .controller('MexicoCtrl', ['$scope', 'Api', function ($scope, Api) {
+  .controller('MexicoCtrl', ['$scope', 'Api', 'Settings', function ($scope, Api, Settings) {
     this.getInvestmentStateColor = function(state) {
       // console.log($scope);
       if (angular.isUndefined($scope.main.results)){
-        return "#ddc";
+        return Settings.defaultColor();
       }
-      console.log(state);
       var investment = Api.investmentByStateForProjects( $scope.main.results, state );
-      
+      var color = Settings.getColorFromInvestment( investment );
+
+      console.log(state + ' ' + investment + ' ' + color);
+      return Settings.getColorFromInvestment( investment );
     };
   }])
   .directive('mexicoMap', function () {
@@ -26,6 +28,7 @@ angular.module('financiamientoClimaticoApp')
       controller: 'MexicoCtrl',
       controllerAs: 'map',
       link: function postLink(scope, element, attrs) {
+        var mxTopoJson = undefined;
         var statename = function(d,i) { return d.objects.geometries}
 
         var width = 960;
@@ -50,7 +53,8 @@ angular.module('financiamientoClimaticoApp')
 
         var g = svg.append("g");
 
-        d3.json("mx_tj.json", function(error, mx) {
+        var drawMap = function(mx) {
+          if (angular.isUndefined(mx)) return ;
           g.selectAll("path")
             .data(topojson.object(mx, mx.objects.states).geometries)
           .enter().append("path")
@@ -62,13 +66,22 @@ angular.module('financiamientoClimaticoApp')
               // process data by state here
               var state = d.properties.state_name;
               var stateColor = scope.map.getInvestmentStateColor( state );
-              console.log(stateColor);
               return stateColor;
-              // return "#ddc"; //territory brown by default
-              // return "#800026"; // cool red
-
             });
+        }
+
+        d3.json("mx_tj.json", function(error, mx) {
+          mxTopoJson = mx;
+          drawMap(mxTopoJson);
         });
+
+        scope.$watch('main.results', function(newValue, oldValue){
+          if (angular.equals(newValue, oldValue)) return ;
+          console.log('calling draw map');
+          g.selectAll("path").remove();
+          drawMap(mxTopoJson);
+          console.log('finish drawing map');
+        }, true);
 
 
       }
