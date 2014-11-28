@@ -7,13 +7,32 @@
  * # mexicoMap
  */
 angular.module('financiamientoClimaticoApp')
+  .controller('MexicoCtrl', ['$scope', 'Api', 'Settings', function ($scope, Api, Settings) {
+    this.getInvestmentStateColor = function(state) {
+      // console.log($scope);
+      if (angular.isUndefined($scope.main.results)){
+        return Settings.defaultColor();
+      }
+      var investment = Api.investmentByStateForProjects( $scope.main.results, state );
+      var color = Settings.getColorFromInvestment( investment );
+
+      console.log(state + ' ' + investment + ' ' + color);
+      return Settings.getColorFromInvestment( investment );
+    };
+  }])
   .directive('mexicoMap', function () {
     return {
       replace: true,
-      template: '<div id="mexicoMapSvg"></div>',
+      template: '<div id="mexicoMapSvg"># de proyectos: {{ main.results.length }}</div>',
       restrict: 'E',
+      controller: 'MexicoCtrl',
+      controllerAs: 'map',
       link: function postLink(scope, element, attrs) {
-        var statename= function(d,i) { return d.objects.geometries}
+        var mxTopoJson = undefined;
+        var statename = function(d,i) { return d.objects.geometries}
+
+        var width = 960;
+        var height = 500;
 
         var x = d3.scale.linear()
         .domain([0, width])
@@ -23,8 +42,6 @@ angular.module('financiamientoClimaticoApp')
         .domain([0, height])
         .range([height, 0]);
 
-        var width = 960,
-        height = 500;
 
         var projection = d3.geo.mercator()
         .scale(1200)
@@ -36,23 +53,35 @@ angular.module('financiamientoClimaticoApp')
 
         var g = svg.append("g");
 
-        d3.json("mx_tj.json", function(error, mx) {
-          d3.json("http://datamx.io/api/action/datastore_search?resource_id=ba3034a7-b2aa-4584-abdc-574a57cf3a45&q=Mitigaci%C3%B3n", function(error, datamx) {
-            g.selectAll("path")
+        var drawMap = function(mx) {
+          if (angular.isUndefined(mx)) return ;
+          g.selectAll("path")
             .data(topojson.object(mx, mx.objects.states).geometries)
-            .enter().append("path")
+          .enter().append("path")
             .attr("d", d3.geo.path().projection(projection))
-            .style("stroke", "#333")
+            .style("stroke", "#a9a9a9")
             .attr("class","default")
             .attr("state", function(d,i){ return mx.objects.states.geometries[i].properties.state_name})
             .attr("fill", function(d,i){
-              for (var key in datamx.result.records){
-                if (datamx.result.records[key].region == mx.objects.states.geometries[i].properties.state_name){ return "blue";}
-              }
-                return "grey"
+              // process data by state here
+              var state = d.properties.state_name;
+              var stateColor = scope.map.getInvestmentStateColor( state );
+              return stateColor;
             });
-          });
+        }
+
+        d3.json("mx_tj.json", function(error, mx) {
+          mxTopoJson = mx;
+          drawMap(mxTopoJson);
         });
+
+        scope.$watch('main.results', function(newValue, oldValue){
+          if (angular.equals(newValue, oldValue)) return ;
+          console.log('calling draw map');
+          g.selectAll("path").remove();
+          drawMap(mxTopoJson);
+          console.log('finish drawing map');
+        }, true);
 
 
       }

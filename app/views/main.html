@@ -41,13 +41,15 @@
     <!-- <span>{{ main.data.records }}</span> -->
     <!-- <span>{{ main.options }}</span> -->
   <p>
-    {{ results.length }}
+    {{ main.results.length }}
   </p>
-  <div class="data-unit" ng-repeat="record in ( results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
+  <div class="data-unit" ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
     <p>
       <span>{{ record.nombre_proyecto }} | </span>
       <span style="color: blue;">{{ record.ano_aprobacion }} | </span>
       <span style="color: red;">{{ record.financiamiento }} | </span>
+      <span style="color: brown;">{{ record.cantidad }} | </span>
+      <span style="color: orange;">{{ record.region }} | </span>
       <span style="color: green;">{{ record.area_proyecto }} </span>
     </p>
   </div>
