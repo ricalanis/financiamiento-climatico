@@ -7,13 +7,23 @@
  * # mexicoMap
  */
 angular.module('financiamientoClimaticoApp')
+  .controller('MexicoCtrl', ['$scope', 'Api', function ($scope, Api) {
+    this.getInvestmentByState = function(state) {
+      return Api.investmentByStateForProjects( main.results, state );
+    };
+  }])
   .directive('mexicoMap', function () {
     return {
       replace: true,
-      template: '<div id="mexicoMapSvg"></div>',
+      template: '<div id="mexicoMapSvg"># de proyectos: {{ main.results.length }}</div>',
       restrict: 'E',
+      controller: 'MexicoCtrl',
+      controllerAs: 'map',
       link: function postLink(scope, element, attrs) {
-        var statename= function(d,i) { return d.objects.geometries}
+        var statename = function(d,i) { return d.objects.geometries}
+
+        var width = 960;
+        var height = 500;
 
         var x = d3.scale.linear()
         .domain([0, width])
@@ -23,8 +33,6 @@ angular.module('financiamientoClimaticoApp')
         .domain([0, height])
         .range([height, 0]);
 
-        var width = 960,
-        height = 500;
 
         var projection = d3.geo.mercator()
         .scale(1200)
@@ -37,21 +45,23 @@ angular.module('financiamientoClimaticoApp')
         var g = svg.append("g");
 
         d3.json("mx_tj.json", function(error, mx) {
-          d3.json("http://datamx.io/api/action/datastore_search?resource_id=ba3034a7-b2aa-4584-abdc-574a57cf3a45&q=Mitigaci%C3%B3n", function(error, datamx) {
-            g.selectAll("path")
+          g.selectAll("path")
             .data(topojson.object(mx, mx.objects.states).geometries)
-            .enter().append("path")
+          .enter().append("path")
             .attr("d", d3.geo.path().projection(projection))
-            .style("stroke", "#333")
+            .style("stroke", "#a9a9a9")
             .attr("class","default")
             .attr("state", function(d,i){ return mx.objects.states.geometries[i].properties.state_name})
             .attr("fill", function(d,i){
-              for (var key in datamx.result.records){
-                if (datamx.result.records[key].region == mx.objects.states.geometries[i].properties.state_name){ return "blue";}
-              }
-                return "grey"
+              // process data by state here
+              // console.log(d.properties.state_name);
+              var state = d.properties.state_name;
+              map.getInvestmentByState( state );
+
+              return "#ddc"; //territory brown by default
+              // return "#800026"; // cool red
+
             });
-          });
         });
 
 

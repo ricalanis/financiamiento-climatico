@@ -33,6 +33,10 @@ angular.module('financiamientoClimaticoApp')
              applyFilterToRecord(self.filters.focus, record.area_proyecto);
     };
 
+    self.investmentByState = function() {
+      Api.investmentByStateForProjects( this.main.results );
+    };
+
     // Fetch the data from the api
     Api.fetchDataset();
   }]);
