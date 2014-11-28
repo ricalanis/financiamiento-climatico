@@ -61,12 +61,13 @@ angular.module('financiamientoClimaticoApp')
       investmentByStateForProjects: function( records, state ){
         var self = this;
 
-        var investments = {};
+        // var investments = {};
         // angular.forEach( self.data.states, function (state) {
           var allProjectsByState = _.where( records, { region: state } );
           var allProjectInvestmentByState = _.pluck( allProjectsByState, 'cantidad' );
           var investmentByState = _.reduce( allProjectInvestmentByState, function(memo, num){ return memo + parseInt( num ); }, 0);
-          investments[state] = investmentByState;
+          return investmentByState;
+          // investments[state] = investmentByState;
         // });
       },
       fetchDataset: function() {

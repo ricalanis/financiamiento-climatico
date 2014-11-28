@@ -8,8 +8,14 @@
  */
 angular.module('financiamientoClimaticoApp')
   .controller('MexicoCtrl', ['$scope', 'Api', function ($scope, Api) {
-    this.getInvestmentByState = function(state) {
-      return Api.investmentByStateForProjects( main.results, state );
+    this.getInvestmentStateColor = function(state) {
+      // console.log($scope);
+      if (angular.isUndefined($scope.main.results)){
+        return "#ddc";
+      }
+      console.log(state);
+      var investment = Api.investmentByStateForProjects( $scope.main.results, state );
+      
     };
   }])
   .directive('mexicoMap', function () {
@@ -54,11 +60,11 @@ angular.module('financiamientoClimaticoApp')
             .attr("state", function(d,i){ return mx.objects.states.geometries[i].properties.state_name})
             .attr("fill", function(d,i){
               // process data by state here
-              // console.log(d.properties.state_name);
               var state = d.properties.state_name;
-              map.getInvestmentByState( state );
-
-              return "#ddc"; //territory brown by default
+              var stateColor = scope.map.getInvestmentStateColor( state );
+              console.log(stateColor);
+              return stateColor;
+              // return "#ddc"; //territory brown by default
               // return "#800026"; // cool red
 
             });
