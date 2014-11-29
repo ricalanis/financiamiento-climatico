@@ -46,6 +46,7 @@ angular.module('financiamientoClimaticoApp')
       },
       getColorFromInvestment: function (investment) {
         for (var i=0; i < ranges.length; i++) {
+          if(investment === 0) return "#FFFDE7";
           if((investment >= ranges[i].initial) && (investment < ranges[i].limit)) return ranges[i].color;
         }
       },
