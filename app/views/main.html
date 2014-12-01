@@ -26,12 +26,17 @@
         <option value=""> Financiamiento </option>
       </select>
     </div>
-      <div class="small-12 large-2 columns">
+    <div class="small-12 large-2 columns">
       <select id="mexicoMapFocus" ng-model="main.filters.focus" ng-options="focus for focus in main.options.focus">
         <option value=""> Enfoque </option>
       </select>
     </div>
-    <div class="small-12 large-4 columns">
+    <div class="small-12 large-2 columns">
+      <select id="mexicoMapStatus" ng-model="main.filters.status" ng-options="status for status in main.options.status">
+        <option value=""> Status </option>
+      </select>
+    </div>
+    <div class="small-12 large-2 columns">
       <input id="mexicoMapSearch" ng-model="main.filters.project" type="text" placeholder="Buscar proyecto por nombre">
     </div>
   </div>
