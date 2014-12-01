@@ -14,9 +14,11 @@ angular.module('financiamientoClimaticoApp')
     // Initialize all variables
     this.options = Api.data.options;
     this.data = Api.data;
+    this.states = Api.data.states;
 
     this.filters = {
       year: null,
+      state: null,
       financing: null,
       focus: null,
       project: null
@@ -27,8 +29,15 @@ angular.module('financiamientoClimaticoApp')
               angular.equals(recordPropertyValue, filterValue);
     };
 
+    var applyStateFilter = function(filterValue, recordPropertyValue) {
+      var recordPropertyValue = recordPropertyValue.toLowerCase();
+      return  filterValue === null ||
+              (filterValue.toLowerCase().indexOf(recordPropertyValue) !== -1);
+    };
+
     self.filterRecords = function(record) {
       return applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
+             applyStateFilter(self.filters.state, record.region) &&
              applyFilterToRecord(self.filters.financing, record.financiamiento) &&
              applyFilterToRecord(self.filters.focus, record.area_proyecto);
     };
