@@ -21,7 +21,8 @@ angular.module('financiamientoClimaticoApp')
         options: {
           years: undefined,
           financing: undefined,
-          focus: undefined
+          focus: undefined,
+          status: undefined
         },
         states: [
           'Distrito Federal',
@@ -76,6 +77,7 @@ angular.module('financiamientoClimaticoApp')
             self.data.options.years = uniqueFieldData(self.data.records, 'ano_aprobacion');
             self.data.options.financing = uniqueFieldData(self.data.records, 'financiamiento');
             self.data.options.focus = uniqueFieldData(self.data.records, 'area_proyecto');
+            self.data.options.status = uniqueFieldData(self.data.records, 'status');
           });
         }
       },

@@ -21,6 +21,7 @@ angular.module('financiamientoClimaticoApp')
       state: null,
       financing: null,
       focus: null,
+      status: null,
       project: null
     };
 
@@ -39,7 +40,8 @@ angular.module('financiamientoClimaticoApp')
       return applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
              applyStateFilter(self.filters.state, record.region) &&
              applyFilterToRecord(self.filters.financing, record.financiamiento) &&
-             applyFilterToRecord(self.filters.focus, record.area_proyecto);
+             applyFilterToRecord(self.filters.focus, record.area_proyecto) &&
+             applyFilterToRecord(self.filters.status, record.status);
     };
 
     self.investmentByState = function() {
