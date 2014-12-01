@@ -340,6 +340,7 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             '*.json',
+            'topojson.v0.min.js',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/*'
