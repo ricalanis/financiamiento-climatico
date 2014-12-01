@@ -80,7 +80,7 @@ angular.module('financiamientoClimaticoApp')
           console.log('calling draw map');
           g.selectAll("path").remove();
           drawMap(mxTopoJson);
-          console.log('finish drawing map');
+          console.log('finished drawing map');
         }, true);
 
 
