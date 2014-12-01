@@ -68,9 +68,7 @@ angular.module('financiamientoClimaticoApp')
       fetchDataset: function() {
         var self = this;
 
-        // console.log(self);
         if ( angular.isUndefined(self.data.records) ) {
-          // console.log('records url' + this.url());
           $http.get(this.url()).
           success(function(data, status, headers, config){
             // set records and it's options
@@ -78,7 +76,6 @@ angular.module('financiamientoClimaticoApp')
             self.data.options.years = uniqueFieldData(self.data.records, 'ano_aprobacion');
             self.data.options.financing = uniqueFieldData(self.data.records, 'financiamiento');
             self.data.options.focus = uniqueFieldData(self.data.records, 'area_proyecto');
-            // console.log( self.data );
           });
         }
       },
