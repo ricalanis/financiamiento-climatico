@@ -9,14 +9,16 @@
 angular.module('financiamientoClimaticoApp')
   .controller('MexicoCtrl', ['$scope', 'Api', 'Settings', function ($scope, Api, Settings) {
     this.getInvestmentStateColor = function(state) {
-      // console.log($scope);
       if (angular.isUndefined($scope.main.results)){
         return Settings.defaultColor();
       }
       var investment = Api.investmentByStateForProjects( $scope.main.results, state );
       var color = Settings.getColorFromInvestment( investment );
 
-      console.log(state + ' ' + investment + ' ' + color);
+      // console.log(state + ' ' + investment + ' ' + color);
+
+      $scope.main.addInvestment( investment );
+      // console.log($scope.main.kpis.investment);
       return Settings.getColorFromInvestment( investment );
     };
   }])
@@ -54,6 +56,8 @@ angular.module('financiamientoClimaticoApp')
         var g = svg.append("g");
 
         var drawMap = function(mx) {
+          scope.main.resetInvestment();
+
           if (angular.isUndefined(mx)) return ;
           g.selectAll("path")
             .data(topojson.object(mx, mx.objects.states).geometries)

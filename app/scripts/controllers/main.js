@@ -25,6 +25,19 @@ angular.module('financiamientoClimaticoApp')
       project: null
     };
 
+    this.kpis = {
+      investment: 0,
+    };
+
+    this.addInvestment = function(newAmount) {
+      this.kpis.investment += newAmount;
+      $scope.$apply();
+    };
+
+    this.resetInvestment = function() {
+      this.kpis.investment = 0;
+    };
+
     self.filterRecords = function(record) {
       return Utilities.applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
              Utilities.applyFilterToRecord(self.filters.state, record.region) &&
