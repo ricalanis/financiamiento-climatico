@@ -33,7 +33,7 @@ angular.module('financiamientoClimaticoApp')
 
     // Ranges
     var ranges = [
-      { initial: 0, limit: firstLimit, color: rangeOneColor },
+      { initial: 1, limit: firstLimit, color: rangeOneColor },
       { initial: firstLimit, limit: secondLimit, color: rangeTwoColor },
       { initial: secondLimit, limit: thirdLimit, color: rangeThreeColor },
       { initial: thirdLimit, limit: fourthLimit, color: rangeFourColor }
