@@ -28,6 +28,16 @@ body {
   display: block;
 }
 
+.map__legend {
+  font-size: 12px;
+  margin-bottom: 0px;
+
+  span {
+    padding: 3px 3px 3px 3px;
+    margin-right: 15px;
+  }
+}
+
 /* adapted from http://maxwells.github.io/bootstrap-tags.html */
 .tag {
   font-size: 14px;

@@ -28,9 +28,12 @@ angular.module('financiamientoClimaticoApp')
       project: null
     };
 
+    this.investmentColors = Settings.rangeColors();
+
     this.kpis = {
       investment: 0,
     };
+
 
     this.addInvestment = function(newAmount) {
       this.kpis.investment += newAmount;
