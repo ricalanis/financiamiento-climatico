@@ -4,8 +4,10 @@
 @import 'cards';
 @import 'map';
 
+$main_background_color: #F5F5F5;
+
 body {
-  background-color: #F5F5F5;
+  background-color: $main_background_color;
 }
 
 .title {
@@ -24,4 +26,34 @@ body {
 
 .map__filter {
   display: block;
+}
+
+/* adapted from http://maxwells.github.io/bootstrap-tags.html */
+.tag {
+  font-size: 14px;
+  padding: .3em .4em .4em;
+  margin: 0 .1em;
+}
+.tag a {
+  color: #bbb;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.tag a:hover {
+  opacity: 1.0
+}
+.tag .remove {
+  vertical-align: bottom;
+  top: 0;
+}
+.tag a {
+  margin: 0 0 0 .3em;
+}
+.tag a .glyphicon-white {
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.close-tag {
+  cursor: pointer;
 }

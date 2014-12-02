@@ -12,7 +12,8 @@ angular
   .module('financiamientoClimaticoApp', [
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'bootstrapComponents'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

@@ -28,11 +28,18 @@
     </select>
     <!-- <input class="map__filter" ng-model="main.filters.project" type="text" placeholder="Buscar proyecto por nombre"> -->
     <div class="filters-tag-container">
-      {{main.filters.state}}
-      {{main.filters.year}}
-      {{main.filters.financing}}
-      {{main.filters.focus}}
-      {{main.filters.status}}
+      <!-- {{main.filters.state}} -->
+      <!-- {{main.filters.year}} -->
+      <!-- {{main.filters.financing}} -->
+      <!-- {{main.filters.focus}} -->
+      <!-- {{main.filters.status}} -->
+
+      <!-- Dynamic closable tags -->
+      <closable-tag value="main.filters.year"></closable-tag>
+      <closable-tag value="main.filters.state"></closable-tag>
+      <closable-tag value="main.filters.financing"></closable-tag>
+      <closable-tag value="main.filters.focus"></closable-tag>
+      <closable-tag value="main.filters.status"></closable-tag>
     </div>
   </div>
 </div>
