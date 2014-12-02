@@ -13,16 +13,16 @@ angular.module('financiamientoClimaticoApp')
     var veryLargeNumber = Math.pow(2,53);
     // investment limits
 
-    var defaultColor = '#DDC';
+    var defaultColor = 'white';
 
     // Range Colors
-    var rangeOneColor = defaultColor;
-    var rangeTwoColor = '#42A5F5';
-    var rangeThreeColor = '#FFA726';
-    var rangeFourColor = '#EF5350';
+    var rangeOneColor = '#2196F3';
+    var rangeTwoColor = '#FFEB3B';
+    var rangeThreeColor = '#FF9800';
+    var rangeFourColor = '#F44336';
 
     // Limits for ranges
-    // >=0 <100,000,
+    // >=1 <100,000,
     // >= 100,000 < 1 millon,
     // >= 1 millon < 10 millones,
     // >= 10 millones
@@ -44,9 +44,12 @@ angular.module('financiamientoClimaticoApp')
       defaultColor: function () {
         return defaultColor;
       },
+      rangeColors: function() {
+        return [rangeOneColor, rangeTwoColor, rangeThreeColor, rangeFourColor];
+      },
       getColorFromInvestment: function (investment) {
         for (var i=0; i < ranges.length; i++) {
-          if(investment === 0) return "white";
+          if(investment === 0) return this.defaultColor();
           if((investment >= ranges[i].initial) && (investment < ranges[i].limit)) return ranges[i].color;
         }
       },

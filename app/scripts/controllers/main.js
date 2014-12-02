@@ -8,13 +8,16 @@
  * Controller of the financiamientoClimaticoApp
  */
 angular.module('financiamientoClimaticoApp')
-  .controller('MainCtrl', ['$scope', 'Api', 'Utilities', function ($scope, Api, Utilities) {
+  .controller('MainCtrl', ['$scope', 'Api', 'Utilities', 'Settings', function ($scope, Api, Utilities, Settings) {
     var self = this;
 
-    // Initialize all variables
+    // Initialize all 'data' variables
     this.options = Api.data.options;
     this.data = Api.data;
     this.states = Api.data.states;
+
+    // Initialize all 'config' variables
+    this.defaultColor = Settings.defaultColor();
 
     this.filters = {
       year: null,
@@ -25,13 +28,15 @@ angular.module('financiamientoClimaticoApp')
       project: null
     };
 
+    this.investmentColors = Settings.rangeColors();
+
     this.kpis = {
       investment: 0,
     };
 
+
     this.addInvestment = function(newAmount) {
       this.kpis.investment += newAmount;
-      $scope.$apply();
     };
 
     this.resetInvestment = function() {

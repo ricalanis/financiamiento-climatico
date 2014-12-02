@@ -72,11 +72,12 @@ angular.module('financiamientoClimaticoApp')
               var stateColor = scope.map.getInvestmentStateColor( state );
               return stateColor;
             });
-        }
+        };
 
         d3.json("mx_tj.json", function(error, mx) {
           mxTopoJson = mx;
           drawMap(mxTopoJson);
+          scope.$apply();
         });
 
         scope.$watch('main.results', function(newValue, oldValue){
