@@ -25,7 +25,7 @@ angular.module('financiamientoClimaticoApp')
   .directive('mexicoMap', function () {
     return {
       replace: true,
-      template: '<div id="mexicoMapSvg"># de proyectos: {{ main.results.length }}</div>',
+      template: '<div id="mexicoMapSvg"></div>',
       restrict: 'E',
       controller: 'MexicoCtrl',
       controllerAs: 'map',
@@ -34,7 +34,7 @@ angular.module('financiamientoClimaticoApp')
         var statename = function(d,i) { return d.objects.geometries}
 
         var width = 960;
-        var height = 500;
+        var height = 420;
 
         var x = d3.scale.linear()
         .domain([0, width])
@@ -47,7 +47,7 @@ angular.module('financiamientoClimaticoApp')
 
         var projection = d3.geo.mercator()
         .scale(1200)
-        .center([-102.34034978813841, 24.012062015793]);
+        .center([-95.34034978813841, 22.012062015793]);
 
         var svg = d3.select(element[0]).append("svg")
         .attr("width", width)
