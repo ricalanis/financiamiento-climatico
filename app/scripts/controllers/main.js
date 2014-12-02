@@ -31,7 +31,6 @@ angular.module('financiamientoClimaticoApp')
 
     this.addInvestment = function(newAmount) {
       this.kpis.investment += newAmount;
-      $scope.$apply();
     };
 
     this.resetInvestment = function() {
