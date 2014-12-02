@@ -22,7 +22,7 @@ angular.module('financiamientoClimaticoApp')
     var rangeFourColor = '#F44336';
 
     // Limits for ranges
-    // >=0 <100,000,
+    // >=1 <100,000,
     // >= 100,000 < 1 millon,
     // >= 1 millon < 10 millones,
     // >= 10 millones
@@ -43,6 +43,9 @@ angular.module('financiamientoClimaticoApp')
     return {
       defaultColor: function () {
         return defaultColor;
+      },
+      rangeColors: function() {
+        return [rangeOneColor, rangeTwoColor, rangeThreeColor, rangeFourColor];
       },
       getColorFromInvestment: function (investment) {
         for (var i=0; i < ranges.length; i++) {
