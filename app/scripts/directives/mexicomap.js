@@ -82,7 +82,7 @@ angular.module('financiamientoClimaticoApp')
               var stateColor = scope.map.getInvestmentStateColor( state );
               return stateColor;
             })
-            .on('mouseover', function (d){
+            .on('mouseover', function(d){
               // Show a tooltip on hover
               tooltip.transition().duration(200).style("opacity", .9);
 
@@ -90,9 +90,15 @@ angular.module('financiamientoClimaticoApp')
               .style("left", (d3.event.pageX) + "px")
               .style("top", (d3.event.pageY - 75) + "px");
             })
-            .on('mouseout', function (){
+            .on('mouseout', function(){
               // Hide the tooltip
               tooltip.transition().duration(500).style("opacity", 0);
+            })
+            .on('click', function(d){
+              // Select filter on click in the state
+              d3.event.stopPropagation();
+              scope.main.filters.state = d.properties.state_name;
+              scope.$apply();
             });
         };
 
