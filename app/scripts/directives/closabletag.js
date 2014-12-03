@@ -16,12 +16,10 @@ angular.module('bootstrapComponents', [])
       },
       controller: ['$scope', function($scope){
         $scope.remove = function ( value ){
-          console.log('removing value');
           this.value = null;
         }
       }],
       link: function postLink(scope, element, attrs) {
-        console.log( scope.backgroundColor );
       }
     };
   });

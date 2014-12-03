@@ -30,6 +30,7 @@ angular.module('financiamientoClimaticoApp')
       controller: 'MexicoCtrl',
       controllerAs: 'map',
       link: function postLink(scope, element, attrs) {
+        // initial variables for map
         var mxTopoJson = undefined;
         var statename = function(d,i) { return d.objects.geometries}
 
@@ -53,8 +54,18 @@ angular.module('financiamientoClimaticoApp')
         .attr("width", width)
         .attr("height", height);
 
+        var tooltip = d3.select('body').append('div').attr('id', 'tooltip');
+
         var g = svg.append("g");
 
+        /* MAP */
+
+        /* function to create html content string in tooltip div. */
+        var toolTipHTMLElement = function(stateName){
+          return "<span>"+ stateName +"</span>";
+        };
+
+        /* function to draw the map. */
         var drawMap = function(mx) {
           scope.main.resetInvestment();
 
@@ -63,7 +74,6 @@ angular.module('financiamientoClimaticoApp')
             .data(topojson.object(mx, mx.objects.states).geometries)
           .enter().append("path")
             .attr("d", d3.geo.path().projection(projection))
-            .style("stroke", "#a9a9a9")
             .attr("class","default")
             .attr("state", function(d,i){ return mx.objects.states.geometries[i].properties.state_name})
             .attr("fill", function(d,i){
@@ -71,10 +81,22 @@ angular.module('financiamientoClimaticoApp')
               var state = d.properties.state_name;
               var stateColor = scope.map.getInvestmentStateColor( state );
               return stateColor;
+            })
+            .on('mouseover', function (d){
+              // Show a tooltip on hover
+              tooltip.transition().duration(200).style("opacity", .9);
+
+              tooltip.html(toolTipHTMLElement( d.properties.state_name ))
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 75) + "px");
+            })
+            .on('mouseout', function (){
+              // Hide the tooltip
+              tooltip.transition().duration(500).style("opacity", 0);
             });
         };
 
-        d3.json("mx_tj.json", function(error, mx) {
+        d3.json('mx_tj.json', function(error, mx) {
           mxTopoJson = mx;
           drawMap(mxTopoJson);
           scope.$apply();
@@ -82,13 +104,9 @@ angular.module('financiamientoClimaticoApp')
 
         scope.$watch('main.results', function(newValue, oldValue){
           if (angular.equals(newValue, oldValue)) return ;
-          console.log('calling draw map');
           g.selectAll("path").remove();
           drawMap(mxTopoJson);
-          console.log('finished drawing map');
         }, true);
-
-
       }
     };
   });
