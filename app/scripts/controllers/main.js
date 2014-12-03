@@ -35,6 +35,14 @@ angular.module('financiamientoClimaticoApp')
     };
 
 
+    this.filtersAvailable = function(){
+      return this.filters.year ||
+             this.filters.state ||
+             this.filters.financing ||
+             this.filters.focus ||
+             this.filters.status;
+    };
+
     this.addInvestment = function(newAmount) {
       this.kpis.investment += newAmount;
     };
