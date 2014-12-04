@@ -11,6 +11,9 @@ La siguiente aplicación es una herramienta hecha en angular que permite visuali
 1. npm install
 2. bower install
 
+##Iniciar la aplicación
+1. grunt serve ([Visitar](http://localhost:9000) en el explorador http://localhost:9000)
+
 ##Demo
 Puedes visualizar un demo en la aplicación de [financiamiento climático](https://mapa-financiamiento.herokuapp.com/)
 
