@@ -18,6 +18,7 @@ angular.module('financiamientoClimaticoApp')
 
     // Initialize all 'config' variables
     this.defaultColor = Settings.defaultColor();
+    this.isOpen = [];
 
     this.filters = {
       year: null,
