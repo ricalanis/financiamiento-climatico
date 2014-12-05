@@ -56,35 +56,53 @@
   <closable-tag value="main.filters.status"></closable-tag>
 </div>
 
-<!-- <div class="row"> -->
-  <!-- {{main.options}}
-  {{main.dataset}} -->
-    <!-- <span>{{ main.data.records }}</span> -->
-    <!-- <span>{{ main.options }}</span> -->
-  <!-- <p>
-    {{ main.results.length }}
-  </p>
-  <div class="data-unit" ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
-    <p>
-      <span>{{ record.nombre_proyecto }} | </span>
-      <span style="color: blue;">{{ record.ano_aprobacion }} | </span>
-      <span style="color: red;">{{ record.financiamiento }} | </span>
-      <span style="color: brown;">{{ record.cantidad }} | </span>
-      <span style="color: orange;">{{ record.region }} | </span>
-      <span style="color: green;">{{ record.area_proyecto }} </span>
-    </p>
-  </div> -->
-  <div class="deck">
-    <input class="map__filter" ng-model="main.filters.project" type="text" placeholder="Buscar proyecto por nombre">
-    <div class="table__card">
-      <ul>
-        <li class="table--row" ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
-          <div class="row--title">{{ record.nombre_proyecto }}</div>
-          <div class="row--subtitle">{{ record.region }}</div>
-          <div class="row--footer text-right">${{ record.cantidad | humanizeInt }}.00</div>
-        </li>
-      </ul>
-    </div>
+<div class="deck">
+  <input class="map__filter" ng-model="main.filters.project" type="text" placeholder="Buscar proyecto por nombre">
+  <div class="table__card">
+    <ul>
+      <accordion close-others="false">
+        <accordion-group ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
+          <accordion-heading>
+            <li class="table--row">
+              <div class="row--title">{{ record.nombre_proyecto }}</div>
+              <div class="row--subtitle">{{ record.region }}</div>
+              <div class="row--footer text-right">${{ record.cantidad | humanizeInt }}.00</div>
+            </li>
+          </accordion-heading>
 
+          <table>
+            <tr>
+              <td class="record__property">Donante de fondo</td>
+              <td>{{ record.Donante_fondo }}</td>
+            </tr>
+
+            <tr>
+              <td class="record__property">Beneficiario</td>
+              <td>{{ record.beneficiario }}</td>
+            </tr>
+
+            <tr>
+              <td class="record__property">Financiamiento</td>
+              <td>{{ record.financiamiento }}</td>
+            </tr>
+
+            <tr>
+              <td class="record__property">Status</td>
+              <td>{{ record.status }}</td>
+            </tr>
+
+            <tr>
+              <td class="record__property">Observaciones</td>
+              <td>{{ record.observaciones }}</td>
+            </tr>
+
+            <tr>
+              <td class="record__property">Fuente</td>
+              <td class="record__property"><a ng-href="{{ record.fuente }}" target="_blank">{{ record.fuente | limitTo: 80 }}...</a></td>
+            </tr>
+          </table>
+        </accordion-group>
+      </accordion>
+    </ul>
   </div>
-<!-- </div> -->
+</div>
