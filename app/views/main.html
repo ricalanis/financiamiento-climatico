@@ -78,11 +78,25 @@
     <input class="map__filter" ng-model="main.filters.project" type="text" placeholder="Buscar proyecto por nombre">
     <div class="table__card">
       <ul>
-        <li class="table--row" ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
-          <div class="row--title">{{ record.nombre_proyecto }}</div>
-          <div class="row--subtitle">{{ record.region }}</div>
-          <div class="row--footer text-right">${{ record.cantidad | humanizeInt }}.00</div>
-        </li>
+        <accordion close-other="true">
+          <accordion-group ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )">
+            <accordion-heading>
+              <li class="table--row">
+                <div class="row--title">{{ record.nombre_proyecto }}</div>
+                <div class="row--subtitle">{{ record.region }}</div>
+                <div class="row--footer text-right">${{ record.cantidad | humanizeInt }}.00</div>
+              </li>
+            </accordion-heading>
+
+            <p class="record__property"><strong>Donante de fondo:</strong> {{ record.Donante_fondo }}</p>
+            <p class="record__property"><strong>&Aacute;rea de proyecto:</strong> {{ record.area_proyecto }}</p>
+            <p class="record__property"><strong>Beneficiario:</strong> {{ record.beneficiario }}</p>
+            <p class="record__property"><strong>Financiamiento:</strong> {{ record.financiamiento }}</p>
+            <p class="record__property"><strong>Status:</strong> {{ record.status }}</p>
+            <p class="record__property"><strong>Observaciones:</strong> {{ record.observaciones }}</p>
+            <a class="record__property" ng-href="{{ record.fuente }}" target="_blank">Fuente</a>
+          </accordion-group>
+        </accordion>
       </ul>
     </div>
 
