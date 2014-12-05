@@ -1,0 +1,18 @@
+@import 'colors';
+
+.accordion dd > .content {
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border: 0;
+}
+
+.record__property {
+  color: $grey-600;
+
+  a {
+    color: $brand-primary !important;
+  }
+}

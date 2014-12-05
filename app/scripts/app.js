@@ -13,6 +13,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
+    'mm.foundation',
     'bootstrapComponents'
   ])
   .config(function ($routeProvider, $locationProvider) {
