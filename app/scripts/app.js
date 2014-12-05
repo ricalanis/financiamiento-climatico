@@ -14,6 +14,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'mm.foundation',
+    'angularUtils.directives.dirPagination',
     'bootstrapComponents'
   ])
   .config(function ($routeProvider, $locationProvider) {
