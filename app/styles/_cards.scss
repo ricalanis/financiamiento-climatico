@@ -1,10 +1,7 @@
-$brand-primary:#0277BD;
+@import 'colors';
+
 $base_padding: 12px;
 $base_margin: 20px; // this value should be equal to the base_padding
-$gray: #DCDCDC;
-$grey-200: #EEEEEE;
-$grey-600: #757575;
-
 
 h1 {
   color: $grey-600;
@@ -20,16 +17,7 @@ h3 {
   margin-bottom: $base_margin + 15px;
 }
 
-p.record__property {
-  color: $grey-600;
-  margin: 0px;
-}
-
-a.record__property {
-  color: $brand-primary !important;
-}
-
-
+// cards framewerk
 
 .card--column {
   float: left;
