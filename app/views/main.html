@@ -62,7 +62,17 @@
   <div class="table__card">
     <ul>
       <accordion close-others="false">
-        <accordion-group dir-paginate="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) ) | itemsPerPage: 10" is-open="main.isOpen[$index]">
+        <accordion-group dir-paginate="record in ( main.results = (
+                        main.data.records |
+                        filter:{
+                          'region': main.filters.state,
+                          'ano_aprobacion': main.filters.year,
+                          'financiamiento': main.filters.financing,
+                          'area_proyecto': main.filters.focus,
+                          'status': main.filters.status
+                        } |
+                        filter: main.filters.project ) ) | itemsPerPage: 10"
+                        is-open="main.isOpen[$index]">
           <accordion-heading>
             <li class="table--row" ng-class="{ 'selected': main.isOpen[$index] }">
               <div class="row--title">{{ record.nombre_proyecto }}</div>
@@ -74,7 +84,7 @@
           <table>
             <tr>
               <td class="record__property">Donante de fondo</td>
-              <td>{{ record.Donante_fondo }}</td>
+              <td>{{ record.donante_fondo }}</td>
             </tr>
 
             <tr>
@@ -90,6 +100,11 @@
             <tr>
               <td class="record__property">Status</td>
               <td>{{ record.status }}</td>
+            </tr>
+
+            <tr>
+              <td class="record__property">A&ntilde;o</td>
+              <td>{{ record.ano_aprobacion }}</td>
             </tr>
 
             <tr>
