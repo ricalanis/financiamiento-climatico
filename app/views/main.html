@@ -62,7 +62,7 @@
   <div class="table__card">
     <ul>
       <accordion close-others="false">
-        <accordion-group ng-repeat="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) )" is-open="main.isOpen[$index]">
+        <accordion-group dir-paginate="record in ( main.results = (main.data.records | filter:main.filterRecords | filter:main.filters.project) ) | itemsPerPage: 10" is-open="main.isOpen[$index]">
           <accordion-heading>
             <li class="table--row" ng-class="{ 'selected': main.isOpen[$index] }">
               <div class="row--title">{{ record.nombre_proyecto }}</div>
@@ -105,5 +105,9 @@
         </accordion-group>
       </accordion>
     </ul>
+  </div>
+
+  <div class="pagination-centered">
+    <dir-pagination-controls template-url="views/pagination.tpl.html"></dir-pagination-controls>
   </div>
 </div>
