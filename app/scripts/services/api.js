@@ -81,7 +81,7 @@ angular.module('financiamientoClimaticoApp')
             totalInvestmentForState += investment;
           }
         }
-        console.log(totalInvestmentForState);
+        // console.log(totalInvestmentForState);
 
         return totalInvestmentForState;
       },

@@ -11,6 +11,6 @@
 angular.module('financiamientoClimaticoApp')
   .filter('humanizeInt', function () {
     return function (input) {
-      return Humanize.formatNumber( input );
+      return Humanize.formatNumber( input, 2 );
     };
   });

@@ -8,6 +8,15 @@
  */
 angular.module('financiamientoClimaticoApp')
   .controller('MexicoCtrl', ['$scope', 'Api', 'Settings', function ($scope, Api, Settings) {
+
+    this.totalInvestmentInState = function(state) {
+      if (angular.isUndefined($scope.main.results)){
+        return 0;
+      }
+
+      return Api.investmentByStateForProjects( $scope.main.results, state );
+    };
+
     this.getInvestmentStateColor = function(state) {
       if (angular.isUndefined($scope.main.results)){
         return Settings.defaultColor();
@@ -15,10 +24,8 @@ angular.module('financiamientoClimaticoApp')
       var investment = Api.investmentByStateForProjects( $scope.main.results, state );
       var color = Settings.getColorFromInvestment( investment );
 
-      // console.log(state + ' ' + investment + ' ' + color);
-
+      // Get color from investment
       $scope.main.addInvestment( investment );
-      // console.log($scope.main.kpis.investment);
       return Settings.getColorFromInvestment( investment );
     };
   }])
@@ -84,9 +91,12 @@ angular.module('financiamientoClimaticoApp')
             })
             .on('mouseover', function(d){
               // Show a tooltip on hover
+              var stateName = d.properties.state_name;
+              var investment = scope.map.totalInvestmentInState( stateName );
+
               tooltip.transition().duration(200).style("opacity", .9);
 
-              tooltip.html(toolTipHTMLElement( d.properties.state_name ))
+              tooltip.html(toolTipHTMLElement( stateName+ ': $' + Humanize.formatNumber( investment, 2 ) +' USD' ))
               .style("left", (d3.event.pageX) + "px")
               .style("top", (d3.event.pageY - 75) + "px");
             })
