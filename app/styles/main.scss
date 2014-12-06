@@ -23,9 +23,27 @@ body {
 
 .row {
   background-color: white;
-  // margin-bottom: 10px;
-  // padding: 20px;
 }
+
+.footer {
+  background-color: initial;
+  .footer-img-tall {
+    width: 100px;
+    margin-right: 50px;
+  }
+
+  .footer-img-fat {
+    width: 200px;
+    margin-right: 50px;
+  }
+  .footer-link {
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #757575;
+  }
+
+}
+
 
 .filters__tags {
   margin-top: 20px;
