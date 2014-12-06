@@ -8,7 +8,7 @@
  * Factory in the financiamientoClimaticoApp.
  */
 angular.module('financiamientoClimaticoApp')
-  .factory('Api', ['$http', function ($http) {
+  .factory('Api', ['$http', '$filter', function ($http, $filter) {
 
     var uniqueFieldData = function(records, fieldName){
       return _.uniq( _.pluck(records, fieldName) );
@@ -60,11 +60,30 @@ angular.module('financiamientoClimaticoApp')
         ]
       },
       investmentByStateForProjects: function( records, state ){
-        var allProjectsByState = _.where( records, { region: state } );
-        var allProjectInvestmentByState = _.pluck( allProjectsByState, 'cantidad' );
-        var investmentByState = _.reduce( allProjectInvestmentByState, function(memo, num){ return memo + parseInt( num ); }, 0);
+        // var allProjectsByState = _.where( records, { region: state } );
 
-        return investmentByState;
+        // Filter the projects further to see if it contains the state multiple or single region
+        var allProjectsByState = $filter('filter')(records, {'region': state});
+
+        // Get total investment from project
+        var numberOfProjects = allProjectsByState.length;
+        var totalInvestmentForState = 0;
+
+        for(var idx=0; idx < numberOfProjects; idx++) {
+          var regions = allProjectsByState[idx].region.split(',');
+          var numberOfRegions = regions.length;
+          var investment = parseInt(allProjectsByState[idx].cantidad);
+          if (numberOfRegions > 1) {
+            // this means that there are multiple regions so we must distribute equally
+            totalInvestmentForState += investment / numberOfRegions;
+          } else {
+            // there is only one region so we must add the total inversion here
+            totalInvestmentForState += investment;
+          }
+        }
+        console.log(totalInvestmentForState);
+
+        return totalInvestmentForState;
       },
       fetchDataset: function() {
         var self = this;
