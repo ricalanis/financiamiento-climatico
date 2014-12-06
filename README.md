@@ -29,8 +29,8 @@ Queremos que este proyecto sea el resultado de un esfuerzo de la comunidad. Uste
 ##Core Team
 Este proyecto es una iniciativa de [Codeando México](http://www.codeandomexico.org).
 El core team:
-- [Raúl Jiménez](https://github.com/jimenezjrs)
-- [Ricardo Alanis](https://github.com/ricalanis)
+- [Raúl Jiménez](https://github.com/jimenezjrs)(webapp)
+- [Ricardo Alanis](https://github.com/ricalanis)(datos) 
 
 ##Licencia
 
