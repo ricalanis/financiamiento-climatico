@@ -29,7 +29,7 @@ angular.module('financiamientoClimaticoApp')
       return Settings.getColorFromInvestment( investment );
     };
   }])
-  .directive('mexicoMap', function () {
+  .directive('mexicoMap', ['$filter', function ($filter) {
     return {
       replace: true,
       template: '<div id="mexicoMapSvg"></div>',
@@ -96,7 +96,8 @@ angular.module('financiamientoClimaticoApp')
 
               tooltip.transition().duration(200).style("opacity", .9);
 
-              tooltip.html(toolTipHTMLElement( stateName+ ': $' + Humanize.formatNumber( investment, 2 ) +' USD' ))
+              // tooltip.html(toolTipHTMLElement( stateName+ ': $' + Humanize.formatNumber( investment, 2 ) +' USD' ))
+              tooltip.html(toolTipHTMLElement( stateName+ ': $' + $filter('humanizeInt')(investment) +' USD' ))
               .style("left", (d3.event.pageX) + "px")
               .style("top", (d3.event.pageY - 75) + "px");
             })
@@ -125,4 +126,4 @@ angular.module('financiamientoClimaticoApp')
         }, true);
       }
     };
-  });
+  }]);
