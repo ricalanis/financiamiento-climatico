@@ -11,19 +11,19 @@
 
   <div class="small-12 large-3 columns">
     <select class="map__filter" ng-model="main.filters.year" ng-options="year for year in main.options.years">
-      <option value="">Todos los a&ntilde;os</option>
+      <option value>Todos los a&ntilde;os</option>
     </select>
     <select class="map__filter" ng-model="main.filters.state" ng-options="state for state in main.states">
-      <option value="">Todos los estados</option>
+      <option value>Todos los estados</option>
     </select>
     <select class="map__filter" ng-model="main.filters.financing" ng-options="financing for financing in main.options.financing">
-      <option value="">Cualquier financiamiento</option>
+      <option value>Cualquier financiamiento</option>
     </select>
     <select class="map__filter" ng-model="main.filters.focus" ng-options="focus for focus in main.options.focus">
-      <option value="">Cualquier enfoques</option>
+      <option value>Cualquier enfoques</option>
     </select>
     <select class="map__filter" ng-model="main.filters.status" ng-options="status for status in main.options.status">
-      <option value="">Cualquier status</option>
+      <option value>Cualquier status</option>
     </select>
 
     <p class="map__legend"><strong>Precios en d&oacute;lares (USD)</strong></p>
@@ -67,11 +67,11 @@
         <accordion-group dir-paginate="record in ( main.results = (
                         main.data.records |
                         filter:{
-                          'region': main.filters.state,
-                          'ano_aprobacion': main.filters.year,
-                          'financiamiento': main.filters.financing,
-                          'area_proyecto': main.filters.focus,
-                          'status': main.filters.status
+                          'region': main.filters.state||undefined,
+                          'ano_aprobacion': main.filters.year||undefined,
+                          'financiamiento': main.filters.financing||undefined,
+                          'area_proyecto': main.filters.focus||undefined,
+                          'status': main.filters.status||undefined
                         } |
                         filter: main.filters.project ) ) | itemsPerPage: 10"
                         is-open="main.isOpen[$index]">
