@@ -16,7 +16,7 @@ angular.module('bootstrapComponents', [])
       },
       controller: ['$scope', function($scope){
         $scope.remove = function ( value ){
-          this.value = null;
+          this.value = undefined;
         }
       }],
       link: function postLink(scope, element, attrs) {

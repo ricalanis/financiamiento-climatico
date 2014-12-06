@@ -21,12 +21,12 @@ angular.module('financiamientoClimaticoApp')
     this.isOpen = [];
 
     this.filters = {
-      year: null,
-      state: null,
-      financing: null,
-      focus: null,
-      status: null,
-      project: null
+      year: undefined,
+      state: undefined,
+      financing: undefined,
+      focus: undefined,
+      status: undefined,
+      project: undefined
     };
 
     this.investmentColors = Settings.rangeColors();
@@ -50,14 +50,6 @@ angular.module('financiamientoClimaticoApp')
 
     this.resetInvestment = function() {
       this.kpis.investment = 0;
-    };
-
-    self.filterRecords = function(record) {
-      return Utilities.applyFilterToRecord(self.filters.year, record.ano_aprobacion) &&
-             Utilities.applyFilterToRecord(self.filters.state, record.region) &&
-             Utilities.applyFilterToRecord(self.filters.financing, record.financiamiento) &&
-             Utilities.applyFilterToRecord(self.filters.focus, record.area_proyecto) &&
-             Utilities.applyFilterToRecord(self.filters.status, record.status);
     };
 
     self.investmentByState = function() {
