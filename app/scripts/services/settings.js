@@ -13,13 +13,13 @@ angular.module('financiamientoClimaticoApp')
     var veryLargeNumber = Math.pow(2,53);
     // investment limits
 
-    var defaultColor = 'white';
+    var defaultColor = '#FFFFCC';
 
     // Range Colors
-    var rangeOneColor = '#2196F3';
-    var rangeTwoColor = '#FFEB3B';
-    var rangeThreeColor = '#FF9800';
-    var rangeFourColor = '#F44336';
+    var rangeOneColor = '#C2E699';
+    var rangeTwoColor = '#78C679';
+    var rangeThreeColor = '#31A354';
+    var rangeFourColor = '#006837';
 
     // Limits for ranges
     // >=1 <100,000,
