@@ -57,6 +57,12 @@ h3 {
   margin-left: auto;
   max-width: 62.5rem;
 
+  .content__card {
+    @extend .base--card;
+    background-color: white;
+    padding: $base_padding $base_padding $base_padding $base_padding;
+  }
+
   .table__card {
     @extend .base--card;
     ul {
