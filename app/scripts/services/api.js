@@ -58,6 +58,12 @@ angular.module('financiamientoClimaticoApp')
       investmentByStateForProjects: function( records, state ){
         // var allProjectsByState = _.where( records, { region: state } );
 
+        var stateMappings = {
+          'Baja California': 'Baja California Norte'
+        };
+
+        state = angular.isDefined(stateMappings[state]) ? stateMappings[state] : state;
+
         // Filter the projects further to see if it contains the state multiple or single region
         var allProjectsByState = $filter('filter')(records, {'region': state});
 
@@ -77,7 +83,6 @@ angular.module('financiamientoClimaticoApp')
             totalInvestmentForState += investment;
           }
         }
-        // console.log(totalInvestmentForState);
 
         return totalInvestmentForState;
       },
