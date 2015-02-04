@@ -57,7 +57,7 @@
       <option value>Cualquier enfoques</option>
     </select>
     <select class="map__filter" ng-model="main.filters.status" ng-options="status for status in main.options.status">
-      <option value>Cualquier status</option>
+      <option value>Cualquier estatus</option>
     </select>
 
     <p class="map__legend"><strong>Precios en d&oacute;lares (USD)</strong></p>
@@ -144,10 +144,14 @@
             </tr>
 
             <tr>
-              <td class="record__property">Observaciones</td>
-              <td>{{ record.observaciones }}</td>
+              <td class="record__property">Fecha de implementación</td>
+              <td>{{ record.implementacion }}</td>
             </tr>
 
+            <tr>
+              <td class="record__property">Abstracto</td>
+              <td>{{ record.observaciones }}</td>
+            </tr>
             <tr>
               <td class="record__property">Fuente</td>
               <td class="record__property"><a ng-href="{{ record.fuente }}" target="_blank">{{ record.fuente | limitTo: 80 }}...</a></td>
