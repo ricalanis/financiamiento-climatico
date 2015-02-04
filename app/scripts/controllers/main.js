@@ -52,8 +52,13 @@ angular.module('financiamientoClimaticoApp')
       this.kpis.investment = 0;
     };
 
-    self.investmentByState = function() {
-      Api.investmentByStateForProjects( this.main.results );
+    // self.investmentByState = function() {
+    //   Api.investmentByStateForProjects( this.results );
+    // };
+
+    self.uniqueProjectsCount = function() {
+      // this funciton will return the unique project name count
+      return Api.uniqueFieldData(this.results, 'nombre_proyecto').length;
     };
 
     // Fetch the data from the api

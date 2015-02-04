@@ -10,10 +10,6 @@
 angular.module('financiamientoClimaticoApp')
   .factory('Api', ['$http', '$filter', function ($http, $filter) {
 
-    var uniqueFieldData = function(records, fieldName){
-      return _.uniq( _.pluck(records, fieldName) );
-    };
-
     return {
       // data getters
       data: {
@@ -62,6 +58,12 @@ angular.module('financiamientoClimaticoApp')
       investmentByStateForProjects: function( records, state ){
         // var allProjectsByState = _.where( records, { region: state } );
 
+        var stateMappings = {
+          'Baja California': 'Baja California Norte'
+        };
+
+        state = angular.isDefined(stateMappings[state]) ? stateMappings[state] : state;
+
         // Filter the projects further to see if it contains the state multiple or single region
         var allProjectsByState = $filter('filter')(records, {'region': state});
 
@@ -81,9 +83,11 @@ angular.module('financiamientoClimaticoApp')
             totalInvestmentForState += investment;
           }
         }
-        // console.log(totalInvestmentForState);
 
         return totalInvestmentForState;
+      },
+      uniqueFieldData: function(records, fieldName){
+        return _.uniq( _.pluck(records, fieldName) );
       },
       fetchDataset: function() {
         var self = this;
@@ -93,17 +97,18 @@ angular.module('financiamientoClimaticoApp')
           success(function(data, status, headers, config){
             // set records and it's options
             self.data.records = data.result.records;
-            self.data.options.years = uniqueFieldData(self.data.records, 'ano_aprobacion');
-            self.data.options.financing = uniqueFieldData(self.data.records, 'financiamiento');
-            self.data.options.focus = uniqueFieldData(self.data.records, 'area_proyecto');
-            self.data.options.status = uniqueFieldData(self.data.records, 'status');
+            self.data.options.years = self.uniqueFieldData(self.data.records, 'ano_aprobacion');
+            self.data.options.financing = self.uniqueFieldData(self.data.records, 'financiamiento');
+            self.data.options.focus = self.uniqueFieldData(self.data.records, 'area_proyecto');
+            self.data.options.status = self.uniqueFieldData(self.data.records, 'status');
           });
         }
       },
       url: function () {
-        // return 'datastore_search.json';
-        return 'datastore_search.json?nocache=' + (new Date()).getTime();
+        // return 'datastore_search_v2.json';
         // return 'http://datamx.io/api/action/datastore_search_sql?sql=SELECT%20*%20from%20%2239774bca-713e-46c5-bbbb-dfda9cc94be3%22';
+        return 'datastore_search_v3.json?nocache=' + (new Date()).getTime();
+        return 'http://datamx.io/api/action/datastore_search_sql?sql=SELECT%20*%20from%20%22f5a2c4ba-7552-49c3-8105-914124c70e2d%22';
       }
     };
   }]);
