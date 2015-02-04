@@ -10,10 +10,6 @@
 angular.module('financiamientoClimaticoApp')
   .factory('Api', ['$http', '$filter', function ($http, $filter) {
 
-    var uniqueFieldData = function(records, fieldName){
-      return _.uniq( _.pluck(records, fieldName) );
-    };
-
     return {
       // data getters
       data: {
@@ -85,6 +81,9 @@ angular.module('financiamientoClimaticoApp')
 
         return totalInvestmentForState;
       },
+      uniqueFieldData: function(records, fieldName){
+        return _.uniq( _.pluck(records, fieldName) );
+      },
       fetchDataset: function() {
         var self = this;
 
@@ -93,10 +92,10 @@ angular.module('financiamientoClimaticoApp')
           success(function(data, status, headers, config){
             // set records and it's options
             self.data.records = data.result.records;
-            self.data.options.years = uniqueFieldData(self.data.records, 'ano_aprobacion');
-            self.data.options.financing = uniqueFieldData(self.data.records, 'financiamiento');
-            self.data.options.focus = uniqueFieldData(self.data.records, 'area_proyecto');
-            self.data.options.status = uniqueFieldData(self.data.records, 'status');
+            self.data.options.years = self.uniqueFieldData(self.data.records, 'ano_aprobacion');
+            self.data.options.financing = self.uniqueFieldData(self.data.records, 'financiamiento');
+            self.data.options.focus = self.uniqueFieldData(self.data.records, 'area_proyecto');
+            self.data.options.status = self.uniqueFieldData(self.data.records, 'status');
           });
         }
       },
