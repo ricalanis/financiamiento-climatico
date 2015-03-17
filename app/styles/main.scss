@@ -28,7 +28,9 @@ body {
 }
 
 .footer {
-  background-color: initial;
+  // background-color: initial;
+  background-color: $grey-200;
+  padding: 35px;
 
   .text-center {
     margin-bottom: 20px;
