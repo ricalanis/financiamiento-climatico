@@ -4,15 +4,17 @@ $base_padding: 12px;
 $base_margin: 20px; // this value should be equal to the base_padding
 
 h1 {
-  color: $grey-600;
-  font-weight: 300;
+  // color: $grey-600;
+  color: $header_color;
+  font-weight: 400;
   margin-top: $base_margin;
   margin-bottom: $base_margin;
 }
 
 h3 {
-  color: $grey-600;
-  font-weight: 300;
+  // color: $grey-600;
+  color: $header_color;
+  font-weight: 400;
   margin-top: $base_margin;
   margin-bottom: $base_margin + 15px;
 }
@@ -48,6 +50,9 @@ h3 {
 
 
 .deck {
+  font-family: "Open Sans";
+  font-style: 18px;
+
   margin-top: $base_margin;
   margin-bottom: $base_margin * 2;
   width : 100%;
@@ -56,6 +61,7 @@ h3 {
   margin-right: auto;
   margin-left: auto;
   max-width: 62.5rem;
+  color: $grey-600;
 
   .content__card {
     @extend .base--card;
