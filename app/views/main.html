@@ -9,16 +9,16 @@
       informaci&oacute;n p&uacute;blico y abierto que sistematiza la informaci&oacute;n sobre el
       origen y destino de los recursos que M&eacute;xico recibe para proyectos,
       programas y acciones destinados a la atenci&oacute;n del cambio clim&aacute;tico
-      en el pa&iacute;s.
+      en el pa&iacute;s. <a ng-show="!!!showRestOfContent" ng-click="showRestOfContent=true;">Leer m&aacute;s.</a>
     </p>
-    <p>
+    <p ng-show="showRestOfContent">
       Con esta plataforma se busca lograr que la informaci&oacute;n sobre el
       financiamiento clim&aacute;tico en M&eacute;xico est&eacute; sistematizada y concentrada en un
       formato de datos abiertos que le permita a la ciudadan&iacute;a analizar y
       comparar los datos para un mejor monitoreo, reporte y verificaci&oacute;n sobre
       los recursos que recibe el pa&iacute;s para atender este fen&oacute;meno clim&aacute;tico.
     </p>
-    <p>
+    <p ng-show="showRestOfContent">
       Los datos sobre los proyectos y los montos asignados son producto de un
       trabajo de sistematizaci&oacute;n de Transparencia Mexicana (datos 2009 – 2012)
       y del Centro Mexicano de Derecho Ambiental (datos 2013 – 2014). Los datos

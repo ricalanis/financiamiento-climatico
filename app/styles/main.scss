@@ -3,14 +3,16 @@
 
 @import 'foundation';
 
+@import 'colors';
 @import 'cards';
 @import 'map';
 @import 'project_detail';
+@import 'foundation_overrides';
 
 $main_background_color: #F5F5F5;
 
 body {
-  background-color: $main_background_color;
+  // background-color: $main_background_color;
 }
 
 .title {
@@ -22,7 +24,7 @@ body {
 }
 
 .row {
-  background-color: white;
+  // background-color: white;
 }
 
 .footer {
@@ -42,13 +44,16 @@ body {
     margin-right: 50px;
   }
   .footer-link {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
     color: #757575;
   }
   .footer-message {
     background-color: initial;
-    p { font-size: 12px; }
+    p {
+      color: $grey-600;
+      font-size: 12px;
+    }
   }
 
 }
@@ -102,4 +107,26 @@ body {
 
 .close-tag {
   cursor: pointer;
+}
+
+// header
+#header {
+  padding: 40px;
+  background-color: $header_color;
+
+  p {
+    color: white;
+    font-wight: 800;
+    font-size: 18px;
+  }
+}
+
+.narrative {
+  color: $grey-600;
+}
+
+.icon {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 30px;
 }
