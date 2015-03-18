@@ -4,7 +4,7 @@ $base_padding: 12px;
 $base_margin: 20px; // this value should be equal to the base_padding
 
 h1 {
-  // color: $grey-600;
+  font-family: "Lato";
   color: $header_color;
   font-weight: 400;
   margin-top: $base_margin;
@@ -12,7 +12,7 @@ h1 {
 }
 
 h3 {
-  // color: $grey-600;
+  font-family: "Lato";
   color: $header_color;
   font-weight: 400;
   margin-top: $base_margin;
