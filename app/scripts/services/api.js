@@ -16,6 +16,7 @@ angular.module('financiamientoClimaticoApp')
         records: undefined,
         options: {
           years: undefined,
+          financer: undefined,
           financing: undefined,
           focus: undefined,
           status: undefined
@@ -98,6 +99,7 @@ angular.module('financiamientoClimaticoApp')
             // set records and it's options
             self.data.records = data.result.records;
             self.data.options.years = self.uniqueFieldData(self.data.records, 'ano_aprobacion');
+            self.data.options.financer = self.uniqueFieldData(self.data.records, 'donante_fondo');
             self.data.options.financing = self.uniqueFieldData(self.data.records, 'financiamiento');
             self.data.options.focus = self.uniqueFieldData(self.data.records, 'area_proyecto');
             self.data.options.status = self.uniqueFieldData(self.data.records, 'status');

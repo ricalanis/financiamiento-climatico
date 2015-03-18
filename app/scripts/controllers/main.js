@@ -23,6 +23,7 @@ angular.module('financiamientoClimaticoApp')
     this.filters = {
       year: undefined,
       state: undefined,
+      financer: undefined,
       financing: undefined,
       focus: undefined,
       status: undefined,
@@ -39,6 +40,7 @@ angular.module('financiamientoClimaticoApp')
     this.filtersAvailable = function(){
       return this.filters.year ||
              this.filters.state ||
+             this.filters.financer ||
              this.filters.financing ||
              this.filters.focus ||
              this.filters.status;
@@ -51,10 +53,6 @@ angular.module('financiamientoClimaticoApp')
     this.resetInvestment = function() {
       this.kpis.investment = 0;
     };
-
-    // self.investmentByState = function() {
-    //   Api.investmentByStateForProjects( this.results );
-    // };
 
     self.uniqueProjectsCount = function() {
       // this funciton will return the unique project name count

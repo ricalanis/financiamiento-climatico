@@ -50,6 +50,9 @@
     <select class="map__filter" ng-model="main.filters.state" ng-options="state for state in main.states">
       <option value>Todos los estados</option>
     </select>
+    <select class="map__filter" ng-model="main.filters.financer" ng-options="financer for financer in main.options.financer">
+      <option value>Cualquier donante</option>
+    </select>
     <select class="map__filter" ng-model="main.filters.financing" ng-options="financing for financing in main.options.financing">
       <option value>Cualquier financiamiento</option>
     </select>
@@ -79,7 +82,6 @@
   </div>
   <div class="small-12 large-6 columns text-center
   small-12 large-6 columns text-center">
-    <!-- <h3 style="margin-bottom:10px;">{{ main.results.length }}</h3> -->
     <h3 style="margin-bottom:10px;">{{ main.uniqueProjectsCount() }}</h3>
     <p>Proyectos de inversi&oacute;n</p>
   </div>
@@ -89,6 +91,7 @@
   <!-- Dynamic closable tags -->
   <closable-tag value="main.filters.year"></closable-tag>
   <closable-tag value="main.filters.state"></closable-tag>
+  <closable-tag value="main.filters.financer"></closable-tag>
   <closable-tag value="main.filters.financing"></closable-tag>
   <closable-tag value="main.filters.focus"></closable-tag>
   <closable-tag value="main.filters.status"></closable-tag>
@@ -104,6 +107,7 @@
                         filter:{
                           'region': main.filters.state||undefined,
                           'ano_aprobacion': main.filters.year||undefined,
+                          'donante_fondo': main.filters.financer||undefined,
                           'financiamiento': main.filters.financing||undefined,
                           'area_proyecto': main.filters.focus||undefined,
                           'status': main.filters.status||undefined
