@@ -7,19 +7,21 @@ h1 {
   font-family: "Lato";
   color: $header_color;
   font-weight: 400;
+  font-size: 2rem;
   margin-top: $base_margin;
   margin-bottom: $base_margin;
 }
 
 h3 {
   font-family: "Lato";
-  color: $header_color;
+  font-size: 1.35rem;
+  color: $grey-600;
   font-weight: 400;
   margin-top: $base_margin;
   margin-bottom: $base_margin + 15px;
 }
 
-// cards framewerk
+// cards framework
 
 .card--column {
   float: left;
