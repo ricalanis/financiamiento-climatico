@@ -11,10 +11,6 @@
 
 $main_background_color: #F5F5F5;
 
-body {
-  // background-color: $main_background_color;
-}
-
 .title {
   color: white;
 }
@@ -23,12 +19,7 @@ body {
   margin-top: 50px;
 }
 
-.row {
-  // background-color: white;
-}
-
 .footer {
-  // background-color: initial;
   background-color: $grey-200;
   padding: 35px;
 
