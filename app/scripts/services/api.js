@@ -110,7 +110,7 @@ angular.module('financiamientoClimaticoApp')
         // return 'datastore_search_v2.json';
         // return 'http://datamx.io/api/action/datastore_search_sql?sql=SELECT%20*%20from%20%2239774bca-713e-46c5-bbbb-dfda9cc94be3%22';
         return 'datastore_search_v3.json?nocache=' + (new Date()).getTime();
-        return 'http://datamx.io/api/action/datastore_search_sql?sql=SELECT%20*%20from%20%22f5a2c4ba-7552-49c3-8105-914124c70e2d%22';
+        // return 'http://datamx.io/api/action/datastore_search_sql?sql=SELECT%20*%20from%20%22f5a2c4ba-7552-49c3-8105-914124c70e2d%22';
       }
     };
   }]);
