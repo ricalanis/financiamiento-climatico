@@ -18,6 +18,16 @@ angular.module('financiamientoClimaticoApp')
         var recordPropertyValue = recordPropertyValue.toLowerCase();
         return  filterValue === null ||
         (filterValue.toLowerCase().indexOf(recordPropertyValue) !== -1);
+      },
+      convertHashtoID: function(countByHash){
+        var valueList = []
+        Object.keys(countByHash).forEach(function (key) { 
+          var hashPerKey = {}
+          hashPerKey["name"] = key
+          hashPerKey["y"] = countByHash[key]
+          valueList.push(hashPerKey)
+        })
+        return valueList
       }
-    };
-  });
+  };
+});
