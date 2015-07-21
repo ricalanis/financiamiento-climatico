@@ -90,6 +90,18 @@ angular.module('financiamientoClimaticoApp')
       uniqueFieldData: function(records, fieldName){
         return _.uniq( _.pluck(records, fieldName) );
       },
+      countByFieldData: function(records, fieldName){
+        return _.countBy(_.pluck(records, fieldName));
+      },
+      moneyByFieldData: function(records, fieldName){
+        var groups = _(records).groupBy(fieldName);
+        var out = _(groups).map(function(g, key) {
+          return { name: key, 
+                   y: _(g).reduce(function(m,x) { 
+                    return m + parseInt(x.cantidad); }, 0) };
+        });
+        return out;
+      },
       fetchDataset: function() {
         var self = this;
 
