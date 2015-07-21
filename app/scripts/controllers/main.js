@@ -60,7 +60,7 @@ angular.module('financiamientoClimaticoApp')
 
     self.valueMoney = function(field) {
       return Api.moneyByFieldData(this.results,field);
-    }
+    };
 
     self.uniqueProjectsCount = function() {
       // this funciton will return the unique project name count
