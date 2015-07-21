@@ -20,7 +20,7 @@ angular.module('financiamientoClimaticoApp')
         (filterValue.toLowerCase().indexOf(recordPropertyValue) !== -1);
       },
       convertHashtoID: function(countByHash){
-        var valueList = []
+        var valueList = [];
         Object.keys(countByHash).forEach(function (key) { 
           var hashPerKey = {}
           hashPerKey["name"] = key
