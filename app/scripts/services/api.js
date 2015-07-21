@@ -100,7 +100,7 @@ angular.module('financiamientoClimaticoApp')
                    y: _(g).reduce(function(m,x) { 
                     return m + parseInt(x.cantidad); }, 0) };
         });
-        return out
+        return out;
       },
       fetchDataset: function() {
         var self = this;
