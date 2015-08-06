@@ -1,6 +1,5 @@
 <div class="deck">
   <div class="content__card">
-
     <h1>Financiamiento clim&aacute;tico en M&eacute;xico</h1>
     <h3>Plataforma para la identificaci&oacute;n de los recursos
       destinados a la atenci&oacute;n del cambio clim&aacute;tico en el pa&iacute;s</h3>
@@ -99,8 +98,8 @@
     </select>
   </div>
   <div class="row">
-    <div class"small-12 large-12 columns">
-      <highchart id="chart1" config="main.chartConfig" class="span10"></highchart>
+    <div class"small-12 large-12 columns" ng-if="main.chartConfig">
+      <highchart id="chart1" config="main.chartConfig"></highchart>
     </div>
   </div>
 </div>

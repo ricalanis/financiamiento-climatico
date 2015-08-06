@@ -9,96 +9,109 @@
  */
 
 angular.module('financiamientoClimaticoApp')
-  .controller('MainCtrl', ['$scope', 'Api', 'Utilities', 'Settings','Chart', function ($scope, Api, Utilities, Settings, Chart) {
+  .controller('MainCtrl', ['$scope', 'Api', 'Utilities', 'Settings', 'Chart', '$timeout', function ($scope, Api, Utilities, Settings, Chart, $timeout) {
     var self = this;
 
-    // Initialize all 'data' variables
-    this.options = Api.data.options;
-    this.data = Api.data;
-    this.states = Api.data.states;
+    Api.fetchDataset()
+    .success(function(data, status, headers, config){
 
-    // Initialize all 'config' variables
-    this.defaultColor = Settings.defaultColor();
-    this.isOpen = [];
+      // set records and it's options
+      Api.data.records = data.result.records;
+      Api.data.options.years = Api.uniqueFieldData(Api.data.records, 'ano_aprobacion');
+      Api.data.options.financer = Api.uniqueFieldData(Api.data.records, 'donante_fondo');
+      Api.data.options.financing = Api.uniqueFieldData(Api.data.records, 'financiamiento');
+      Api.data.options.focus = Api.uniqueFieldData(Api.data.records, 'area_proyecto');
+      Api.data.options.status = Api.uniqueFieldData(Api.data.records, 'status');
 
-    this.filters = {
-      year: undefined,
-      state: undefined,
-      financer: undefined,
-      financing: undefined,
-      focus: undefined,
-      status: undefined,
-      project: undefined
-    };
-
-    this.investmentColors = Settings.rangeColors();
-
-    this.kpis = {
-      investment: 0,
-    };
+      // Initialize all 'data' variables
+      self.options = Api.data.options;
+      self.data = Api.data;
+      self.states = Api.data.states;
 
 
-    this.filtersAvailable = function(){
-      return this.filters.year ||
-             this.filters.state ||
-             this.filters.financer ||
-             this.filters.financing ||
-             this.filters.focus ||
-             this.filters.status;
-    };
+      // Initialize all 'config' variables
+      self.defaultColor = Settings.defaultColor();
+      self.isOpen = [];
 
-    this.addInvestment = function(newAmount) {
-      this.kpis.investment += newAmount;
-    };
+      self.filters = {
+        year: undefined,
+        state: undefined,
+        financer: undefined,
+        financing: undefined,
+        focus: undefined,
+        status: undefined,
+        project: undefined
+      };
 
-    this.resetInvestment = function() {
-      this.kpis.investment = 0;
-    };
+      self.investmentColors = Settings.rangeColors();
 
-    this.valueCount = function(field) {
-      return Utilities.convertHashtoID(Api.countByFieldData(this.results, field));
-    };
+      self.kpis = {
+        investment: 0,
+      };
 
-    this.valueMoney = function(field) {
-      return Api.moneyByFieldData(this.results,field);
-    };
 
-    this.uniqueProjectsCount = function() {
-      console.log(Utilities.PackValues(this.valueMoney('beneficiario')))
-      // this funciton will return the unique project name count
-      return Api.uniqueFieldData(this.results, 'nombre_proyecto').length;
-    };
+      self.filtersAvailable = function(){
+        return self.filters.year ||
+               self.filters.state ||
+               self.filters.financer ||
+               self.filters.financing ||
+               self.filters.focus ||
+               self.filters.status;
+      };
 
-    // Fetch the data from the api
-    
+      self.addInvestment = function(newAmount) {
+        self.kpis.investment += newAmount;
+      };
 
-    this.charts = [{
-      id:0,
-      label:'Estado del Proyecto'
-    },{
-      id:1,
-      label:'Tipo de Financiamiento'
-    },{
-      id:2,
-      label:'Area del Proyecto'
-    },{
-      id:3,
-      label:'Apoyo por Donante'
-    },{
-      id:4,
-      label:'Apoyo por Beneficiario'
-    }
-    ];
+      self.resetInvestment = function() {
+        self.kpis.investment = 0;
+      };
 
-    this.chart_selected = this.charts[0];
+      self.valueCount = function(field) {
+        return Utilities.convertHashtoID(Api.countByFieldData(self.results, field));
+      };
 
-    this.chart_action = function() {
-      var data_functions = [this.valueCount('status'),this.valueMoney('financiamiento'),this.valueCount('area_proyecto'), Utilities.PackValues(this.valueMoney('donante_fondo')), Utilities.PackValues(this.valueMoney('beneficiario'))];
-      this.chartConfig = Chart.chartConfig(this.chart_selected.id, data_functions[this.chart_selected.id]);
-    };
+      self.valueMoney = function(field) {
+        return Api.moneyByFieldData(self.results,field);
+      };
 
-    Api.fetchDataset();
-    
+      self.uniqueProjectsCount = function() {
+        console.log(Utilities.PackValues(self.valueMoney('beneficiario')))
+        // this funciton will return the unique project name count
+        return Api.uniqueFieldData(self.results, 'nombre_proyecto').length;
+      };
+
+      // Fetch the data from the api
+
+
+      self.charts = [{
+        id:0,
+        label:'Estado del Proyecto'
+      },{
+        id:1,
+        label:'Tipo de Financiamiento'
+      },{
+        id:2,
+        label:'Area del Proyecto'
+      },{
+        id:3,
+        label:'Apoyo por Donante'
+      },{
+        id:4,
+        label:'Apoyo por Beneficiario'
+      }
+      ];
+
+      self.chart_selected = self.charts[0];
+
+      self.chart_action = function() {
+        var data_functions = [ self.valueCount('status'), self.valueMoney('financiamiento'), self.valueCount('area_proyecto'), Utilities.PackValues(self.valueMoney('donante_fondo')), Utilities.PackValues(self.valueMoney('beneficiario'))];
+        self.chartConfig = Chart.chartConfig(self.chart_selected.id, data_functions[self.chart_selected.id]);
+      };
+
+      $timeout(function(){
+        self.chart_action();
+      }, 300);
+    });
+
   }]);
-
-
