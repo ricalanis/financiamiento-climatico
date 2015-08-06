@@ -109,9 +109,17 @@ angular.module('financiamientoClimaticoApp')
         self.chartConfig = Chart.chartConfig(self.chart_selected.id, data_functions[self.chart_selected.id]);
       };
 
+      // load on beginning hack
+      // this should be refactored and removed
       $timeout(function(){
         self.chart_action();
       }, 300);
+
+      // make chart action reload itself on data changes
+      $scope.$watch(function(){ return self.results; }, function(newValue, oldValue){
+        if (newValue === oldValue) return ;
+        self.chart_action();
+      }, true);
     });
 
   }]);
