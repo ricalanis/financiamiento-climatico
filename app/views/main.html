@@ -90,6 +90,23 @@
   </div>
 </div>
 
+<hr style="height:1px; border:none; color:#000; background-color:rgb(224, 224, 224); width:80%; text-align:center; margin: 0 auto;">
+
+<div id="chartsSection" class="row">
+  <div class="small-12 large-12 columns">&nbsp;</div>
+  <div class="small-12 large-6 columns">&nbsp;</div>
+  <div class="small-12 large-3 columns text-right" style:"top: 50%;transform: translateY(-50%);">
+    <p>Ver Donantes por:</p>
+  </div>
+  <div class="small-12 large-3 columns">
+    <select ng-options="value as value.label for value in main.charts" ng-model="main.chart_selected" ng-change="main.chart_action()">
+    </select>
+  </div>
+  <div class"small-12 large-12 columns">
+    <highchart id="chart1" config="main.chartConfig" class="span10"></highchart>
+  </div>
+</div>
+
 <div ng-show="main.filtersAvailable()" class="row filters__tags">
   <!-- Dynamic closable tags -->
   <closable-tag value="main.filters.year"></closable-tag>

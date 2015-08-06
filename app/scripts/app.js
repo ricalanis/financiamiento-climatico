@@ -15,7 +15,8 @@ angular
     'ngSanitize',
     'mm.foundation',
     'angularUtils.directives.dirPagination',
-    'bootstrapComponents'
+    'bootstrapComponents',
+    'highcharts-ng'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
