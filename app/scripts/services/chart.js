@@ -24,7 +24,9 @@ angular.module('financiamientoClimaticoApp')
         }],
         title: {
           text: 'Número de proyectos por avance'
-        },
+        },credits: {
+      enabled: false
+       },
 
       loading: false
     },{ options: {
@@ -39,7 +41,9 @@ angular.module('financiamientoClimaticoApp')
         }],
         title: {
           text: 'Monto en dólares por tipo de inversión'
-        },
+        },credits: {
+      enabled: false
+      },
 
       loading: false
     },{ options: {
@@ -75,6 +79,8 @@ angular.module('financiamientoClimaticoApp')
         },
         title: {
           text: 'Proyectos por área de aplicación'
+        },credits: {
+        enabled: false
         },
 
       loading: false
@@ -139,7 +145,9 @@ angular.module('financiamientoClimaticoApp')
         }],
         title: {
           text: 'Dinero Invertido por Donante'
-        },
+        },credits: {
+              enabled: false
+      },
 
       loading: false
     },{ options: {
@@ -204,7 +212,9 @@ angular.module('financiamientoClimaticoApp')
         }],
         title: {
           text: 'Dinero Invertido por Beneficiario'
-        },
+        },credits: {
+       enabled: false
+      },
 
       loading: false
     }
